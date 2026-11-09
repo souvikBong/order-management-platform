@@ -6,6 +6,8 @@ import com.souvik.orderservice.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/orders")
 @RequiredArgsConstructor
@@ -18,5 +20,18 @@ public class OrderController {
             @RequestBody CreateOrderRequest request) {
 
         return service.createOrder(request);
+    }
+
+    @GetMapping("/{id}")
+    public OrderResponse getOrderById(
+            @PathVariable Long id) {
+
+        return service.getOrderById(id);
+    }
+
+    @GetMapping
+    public List<OrderResponse> getAllOrders() {
+
+        return service.getAllOrders();
     }
 }
